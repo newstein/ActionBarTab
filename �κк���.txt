@@ -1,0 +1,320 @@
+
+cygwin path
+
+
+>export PATH=$PATH:/cygdrive/c/
+
+C:\AndroiDev\bin\jdk1.6.0_23
+
+JAVA_HOME=/cygdrive/c/AndroiDev/bin/jdk1.6.0_23
+PATH=$PATH:$JAVA_HOME/bin
+export JAVA_HOME
+export PATH
+=================================
+<linux server 1>
+10.22.47.81
+
+-------------------------------------------
+<ant build>
+If you already have a project that you'd like to add the Ant build script to, then there is an 
+easy command line tool you can use. Open up a command prompt and navigate to the base directory of 
+your project. From there, use the command:
+android update project --path .
+
+Here is an example of successful output:
+>android update project --path .
+Updated local.properties
+Added file C:\dev\blog\antbuild\build.xml
+
+If the android command is not found, then you need to update your path to include the Android tools. 
+ On Windows, you can use something like set path=%PATH%;C:\dev\android-sdk-windows\tools (substituting 
+your actual Android installation directory), or even better add it to your path persistently by updating 
+the environment variables through your system properties.
+
+
+==================================================
+motodev
+
+newstein@empal.com
+news2816
+
+=======================
+<tablet sw release>
+\\sp6pm-file\04.Star\Tablet PC
+============================================ 
+
+ $ cd OptimusT 
+       $ repo init -u ssh://cnsyoungjin.kim@165.243.137.21:29433/manifest.git -b OptimusT_master 
+       $ repo sync 
+       $ repo start OptimusT_master --all 
+
+
+=================================================
+Eclipse tab
+ CTRL+SHift+F
+----------------------
+A<NV Flash down>
+1. Power Off
+2. volume up,down+Power -->Reset 
+2.NV down
+
+
+
+
+======================================================
+github
+
+git clone git@github.com:newstein/ActionBarTab.git 
+
+ssh://cnsyoungjin.kim@165.243.137.21:29433/platform/device/lge/cappuccino.git
+ssh://cnsyoungjin.kim@165.243.137.21:29433/platform/packages/apps/Launcher2.git
+
+
+ssh://cnsyoungjin.kim@165.243.137.21:29433/platform/packages/apps/LGHome.git -b OptimusT_master 
+< git bash>
+git clone ssh://cnsyoungjin.kim@165.243.137.21:29433/platform/packages/apps/LGHome.git  -b OptimusT_master
+
+       $ repo init -u ssh://Your AD account@165.243.137.21:29433/manifest.git -b OptimusT_master 
+       
+==================================================
+
+
+X:\works\OptimusT2\android\frameworks\base\services\java\com\android\server\am\
+X:\works\OptimusT2\android\out\target\product\star\system\framework\services.jar
+
+=======================================
+1.v909_hc_HR24\build 위치에서
+
+./build_with_pathes.sh all  XXXXXXX
+
+
+
+2.v909_hc_HR24\build 위치에서
+
+./build_star.sh all
+
+===============================
+v909_hc_HR24\build 위치에서
+
+./build_with_patches.sh all
+위 명령이 기본적인 풀빌드 명령으로 실행 후
+Clean 후 빌드 할것인가에 대한 선택 이후 자동 빌드 됩니다
+
+
+./build_with_patches.sh는 이러한 patch들과 nvidia git에서 반영되는 부분을 포함하여 빌드하는 스크립트입니다.
+
+./build_star.sh는 이러한 patch들이 빠져있는 스크립트입니다.
+
+==============================
+Xming
+10.22.47.81
+
+
+=================================
+(android폴더에서)
+
+export TARGET_PRODUCT=startablet
+source build/envsetup.sh
+cd frameworks/base/packages/SystemUI(빌드하려는 경로)
+mm(build)
+
+adb remount (success하면)
+
+adb push local경로 /system/app
+
+adb shell stop
+adb shell start
+----------------------------------------------------------
+http://realnanhea.blog.me/30089574466
+
+
+목표 : SDK에 포함되어 있는 Launcher를 수정,개발 할 때, 디버깅 및 빌드가 용이하지 않은점을 개선하기 위해 Launcher 떼어내기. 
+
+
+
+
+1. Android SDK의 Full Source를 다운 받아 빌드한다.
+(빌드한 결과로 out폴더에 여러가지 라이브러리들이 생성 될 것이다.)
+
+
+2. Launcher소스(sdk/packages/apps/Launcher)를 Eclipse로 임포트한다.
+
+
+3. 빌드 결과로 생긴 out폴더에서 필요한 라이브러리들을 추가한다.
+(Launcher의 경우는 아래 3개의 라이브러리를 추가하면 된다.)
+./out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar
+./out/target/common/obj/JAVA_LIBRARIES/core_intermediates/classes.jar
+./out/target/common/obj/APPS/Launcher_intermediates/classes.jar
+(Froyo의 경우,
+./out/target/common/obj/APPS/Launcher_intermediates/classes.jar 대신에
+./out/target/common/obj/JAVA_LIBRARIES/android-common_intermediates/classes.jar를 사용해야 문제가 없다고 한다.)
+
+
+
+
+3-1. 라이브러리 추가하기
+Launcher 프로젝트 우클릭-Build path-Configure Build Path-JavaBuildPath의 Libraries탭
+Add Library-User Library-우측 User Libraries클릭-New클릭 후 임의의 이름 지정-만든 User Libraries에서 Add Jars를 통해 라이브러리 추가
+
+
+3-2. 라이브러리 배결
+auncher 프로젝트 우클릭-Build path-Configure Build Path-Order and Export탭에서 android2.1.jar를 최 하위로 놓기
+
+
+4. Project를 Clear한 후, Build 
+
+
+5. Launcher 프로젝트 우클릭-Export Unsigned Application Package로 apk생성
+
+
+6. 서명하기
+Shell에서 아래 명령을 실행한다. 단, 주의할 것은 각 어플마다 걸맞는 인증키가 있다. 인증키를 어플에 맞는 것으로 적어줘야 한다.
+어플에 맞는 인증키는, 어플 안에 있는 Android.mk에 명시되어 있다.
+ex) LOCAL_CERTIFICATE := shared
+
+
+export TOP=/home/koinho/KWAF/android-2.1_r2
+export SIGNAPK_JAR=$TOP/out/host/linux-x86/framework/signapk.jar
+export PRIVATE_CERTIFICATE=$TOP/build/target/product/security/testkey.x509.pem
+export PRIVATE_PRIVATE_KEY=$TOP/build/target/product/security/testkey.pk8
+
+
+
+java -jar $SIGNAPK_JAR $PRIVATE_CERTIFICATE $PRIVATE_PRIVATE_KEY [기존 unsigned apk] [signing 할 apk]
+ex. java -jar $SIGNAPK_JAR $PRIVATE_CERTIFICATE $PRIVATE_PRIVATE_KEY Launcher.apk Launcher_signed.apk
+
+
+7. 기존 Launcher삭제 및 재설치 
+터미널에서 아래의 명령을 입력한다.
+
+
+7-1. 삭제
+adb shell
+mount -o rw,remount -t yaffs2 /dev/block/mtdblock0 /system
+rm /system/app/Launcher2.apk
+pm uninstall com.android.launcher2
+7-2. 재 설치
+adb install Launcher_signed.apk
+
+adb remount
+adb push Launcher2.apk /system/app/
+
+
+===================================================
+[Email ID | yeunbok.ryu]:[TAG | TOP_MENU], #[TD번호 | 232], 주석 내용
+[Eamil ID]:end
+------------------------
+1. - 1주
+    [cnsyoungjin.kim]:[TOP_MENU],#[ ],Task1 Usage AllApps View add
+    [cnsyoungjin.kim]:end
+2. -1주
+ //   [cnsyoungjin.kim]:[TOP_MENU],#[ ],Task2 Search Result View add
+ //   [cnsyoungjin.kim]:end
+
+3.-2주
+    [cnsyoungjin.kim]:[TOP_MENU],#[ ],Task3 Usage,Search Result Status add and implementation
+    [cnsyoungjin.kim]:end
+
+4.-1주
+    [cnsyoungjin.kim]:[TOP_MENU],#[ ],Task4 category,Search Button add and action implementation
+    [cnsyoungjin.kim]:end
+5.-1주
+    [cnsyoungjin.kim]:[TOP_MENU],#[ ],Task5 search Button add and action implementation
+    [cnsyoungjin.kim]:end
+6.-2주
+    [cnsyoungjin.kim]:[TOP_MENU],#[ ],Task6 Usage DB analysis  and filter implementation
+    [cnsyoungjin.kim]:end
+
+7.-1주
+    [cnsyoungjin.kim]:[TOP_MENU],#[ ],Task7 Search Result DB analysis  and filter implementation
+    [cnsyoungjin.kim]:end
+8.-2주
+    [cnsyoungjin.kim]:[TOP_MENU],#[ ],Task8 All Apps long click delete toggle implementation
+    [cnsyoungjin.kim]:end
+-----------------------------------------------------------------------------------
+1. - 1주
+    //[cnsyoungjin.kim]:[TOP_MENU],#[ ],Task1 Usage AllApps View add and category,usage button add
+    //[cnsyoungjin.kim]:end
+-------------------------------
+	//[cnsyoungjin.kim]:[TOP_MENU],#[ ],Task1 Usage AllApps View add and category,usage button add	
+	//[cnsyoungjin.kim]:end
+
+//[cnsyoungjin.kim]:[TOP_MENU],#[ ],Task1 Usage AllApps View add and category,usage button add
+//[cnsyoungjin.kim]:end
+
+
+2. - 1주
+    //[cnsyoungjin.kim]:[TOP_MENU],#[ ],Task2 SearchView  add and view status implementation
+    //[cnsyoungjin.kim]:end
+-----------------------------
+	//[cnsyoungjin.kim]:[TOP_MENU],#[ ],Task2 SearchView  add and view status implementation
+	//[cnsyoungjin.kim]:end
+
+//[cnsyoungjin.kim]:[TOP_MENU],#[ ],Task2 SearchView  add and view status implementation
+//[cnsyoungjin.kim]:end
+
+
+2.-2주
+    //sean_recent
+    //[cnsyoungjin.kim]:[TOP_MENU],Task3 Use usaestats service  and filter implementation
+    //[cnsyoungjin.kim]:end
+--------------------------------
+	//[cnsyoungjin.kim]:[TOP_MENU],#[ ],Task3 Use usaestats service  and filter implementation
+	//[cnsyoungjin.kim]:end
+//[cnsyoungjin.kim]:[TOP_MENU],#[ ],Task3 Use usaestats service  and filter implementation
+//[cnsyoungjin.kim]:end
+
+2.-1주
+    //[cnsyoungjin.kim]:[TOP_MENU],#[ ],Task4 All Apps long click delete toggle implementation
+    //[cnsyoungjin.kim]:end
+-------------------------------
+	//[cnsyoungjin.kim]:[TOP_MENU],#[ ],Task4 All Apps long click delete toggle implementation
+	//[cnsyoungjin.kim]:end
+
+
+
+//[cnsyoungjin.kim]:[TOP_MENU],filter save in LauncherProvider
+//[cnsyoungjin.kim]:end
+
+
+
+
+
+========================================
+3. list move action 
+
+	//[cnsyoungjin.kim]:[TOP_MENU],#[ ],Task5 All Apps move implementation
+	//[cnsyoungjin.kim]:end
+
+
+4. usage
+	//[cnsyoungjin.kim]:[TOP_MENU]//sean_0513 All Apps Usage Service 
+	//[cnsyoungjin.kim]:end
+      
+         //[cnsyoungjin.kim]:[TOP_MENU] //sean_0513 filter save in LauncherProvider
+
+         //[cnsyoungjin.kim]:[TOP_MENU] //sean_0513 All Apps long click delete bug  
+         //[cnsyoungjin.kim]:[TOP_MENU] //sean_0513 All Apps new tab bug     
+============================================
+에러는 다음과 같습니다.
+******************************
+You have tried to change the API from what has been previously approved.
+
+To make these errors go away, you have two choices:
+   1) You can add "@hide" javadoc comments to the methods, etc. listed in the
+      errors above.
+
+   2) You can update current.xml by executing the following command:
+         make update-api
+
+      To submit the revised current.xml to the main Android repository,
+      you will need approval.
+******************************
+#export TARGET_PRODUCT=startablet
+#make update-api
+=========================================================================================
+//sean_choicemode
+
+
+
+
